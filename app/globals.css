@@ -28,3 +28,14 @@ body {
   color: var(--foreground);
   font-family: var(--font-rubik);
 }
+
+.shadowxl {
+  @apply shadow-xl shadow-blue-900/40
+}
+
+.shadowsm {
+  @apply shadow-sm shadow-blue-600/40
+}
+ .bg-element {
+  @apply bg-blue-300/40
+ }
