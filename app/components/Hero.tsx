@@ -5,7 +5,7 @@ import WeeklyWeatherCard from "./WeeklyWeatherCard";
 
 export default function Hero() {
   return (
-    <div className="flex flex-col items-center justify-center mx-auto w-[80%]">
+    <div className="flex flex-col items-center justify-center mx-auto w-[95%]">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col md:flex-row gap-4">
           <span className="">
