@@ -1,18 +1,32 @@
 import React from "react";
-import { BiMoon, BiSolidRightArrow, BiSun } from "react-icons/bi";
-import {
-  BsCloudRainHeavyFill,
-  BsFillCloudRainFill,
-  BsCloudRainHeavy,
-  BsFillMoonFill,
-  BsFillSunFill,
-} from "react-icons/bs";
-import { weatherCardData} from "../lib/data";
+// import { BiMoon, BiSolidRightArrow, BiSun } from "react-icons/bi";
+// import {
+//   BsCloudRainHeavyFill,
+//   BsFillCloudRainFill,
+//   BsCloudRainHeavy,
+//   BsFillMoonFill,
+//   BsFillSunFill,
+// } from "react-icons/bs";
+
 
 export default function CurrentWeatherCard() {
   return (
-    <main className="flex items-center justify-center w-full">
-      <div className="flex flex-col items-center justify-between py-2 px-3 min-w-w-fit border-2 rounded-2xl bg-gradient from-blue-50/70 to-blue-100/90 border-blue-500/20 shadowxl">
+    <main className="flex flex-col items-center justify-between py-2 px-3 min-w-w-fit border-2 rounded-2xl bg-gradient from-blue-50/70 to-blue-100/90 border-blue-500/20 shadowxl">
+      <div className="bg-blue-100 rounded-lg p-4 shadow mb-6">
+        <p className="text-xl">🌡️ Temp: {current.temperature_2m}°C</p>
+        <p className="text-lg">💨 Wind: {current.wind_speed_10m} km/h</p>
+        
+        <p className="text-sm text-gray-600">
+          📅{" "}
+          {new Date(current.time).toLocaleDateString(undefined, {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+          })}
+        </p>
+      </div>
+
+      {/* <div className="flex flex-col items-center justify-between py-2 px-3 min-w-w-fit border-2 rounded-2xl bg-gradient from-blue-50/70 to-blue-100/90 border-blue-500/20 shadowxl">
         <h1 className="text-base font-redular text-gray-600/90 shadowsm py-1 px-2 rounded-sm mt-1 bg-element">
           Sunday 29 | 06
         </h1>
@@ -54,7 +68,7 @@ export default function CurrentWeatherCard() {
             </h2>
           </span>
         </div>
-      </div>
+      </div> */}
     </main>
   );
 }
