@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   const params = {
     latitude: 1.286389,
     longitude: 36.817223,
-    "hourly": "temperature_2m",
+    hourly: "temperature_2m",
   };
 
   if (!lat || !lon) {
@@ -16,7 +16,8 @@ export async function GET(req: NextRequest) {
   }
 
   const res = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,weathercode&timezone=auto`
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,wind_speed_10m_max,weathercode&timezone=auto&forecast_days=7`
+
   );
 
   if (!res.ok) {
@@ -24,4 +25,5 @@ export async function GET(req: NextRequest) {
   }
   const data = await res.json();
   return NextResponse.json(data);
+ 
 }
