@@ -27,6 +27,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-rubik);
+  @apply  bg-gradient-to-b from-blue-50 to-blue-100 ;
 }
 
 .shadowxl {
