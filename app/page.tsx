@@ -19,6 +19,9 @@ import { useEffect, useState } from "react";
 import { fetchFullWeather } from "./lib/api";
 import { BsCloudRainHeavy } from "react-icons/bs";
 import { BiSun } from "react-icons/bi";
+import CurrentWeatherCard from "./components/CurrentWeatherCard";
+import WeeklyWeatherCard from "./components/WeeklyWeatherCard";
+import Hero from "./components/Hero";
 
 export default function Home() {
   const [weather, setWeather] = useState<any>(null);
@@ -48,35 +51,14 @@ export default function Home() {
   const daily = weather.daily;
 
   return (
-    <div className="h-screen flex flex-col w-[85%] items-center justify-center text-2xl bg-gradient-to-b from-blue-50 to-blue-100 mx-auto mt-20">
+    <div className="h-screen flex flex-col w-[85%] items-center justify-center text-2xl mx-auto mt-20">
       <div className="flex flex-col">
-        <h1 className="text-2xl font-bold text-center mb-4">Current Weather</h1>
-        <div className="flex flex-col items-center justify-between py-2 px-3 min-w-w-fit border-2 rounded-2xl bg-gradient from-blue-50/70 to-blue-100/90 border-blue-500/20 shadowxl my-7">
-          <p className="text-base font-redular text-gray-600/90 shadowsm py-1 px-2 rounded-sm mt-1 bg-element">
-            📅{" "}
-            {new Date(current.time).toLocaleDateString(undefined, {
-              weekday: "long",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
-          <div className="flex text-7xl p-2 items-center justify-between">
-            <p className="text-xl">🌡️ Temp: {current.temperature_2m}°C</p>
-          </div>
-          <span className="flex text-7xl p-2 items-center w-full justify-around">
-            <BiSun />
-            <h2 className="text-3xl font-medium my-2">Sunny</h2>
-          </span>
-          <p className="text-lg">💨 Wind: {current.wind_speed_10m} km/h</p>
+       
+        <Hero />
 
-          <div className="flex text-base justify-center items-center">
-            {" "}
-            <p>🌡️ High: {current.temperature_max}°C</p>
-            <p>🌡️ Low: {current.temperature_min}°C</p>
-          </div>
-        </div>
+        
       </div>
-      <div className="flex flex-col w-full">
+      {/* <div className="flex flex-col w-full">
         <h2 className="text-xl font-semibold mb-2">7-Day Forecast</h2>
         <div className="grid text-base grid-cols-7 gap-x-2 py-3 rounded-xl items-center border-2 m-4 border-blue-300/40 justify-center shadowxl">
           {daily.time.map((date: string, i: number) => (
@@ -102,14 +84,13 @@ export default function Home() {
                 </div>
 
                 <p className="text-sm line-clamp-1">
-                  {" "}
                   {daily.wind_speed_10m_max[i]} km/h
                 </p>
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
