@@ -53,10 +53,7 @@ export default function Home() {
   return (
     <div className="h-screen flex flex-col w-[85%] items-center justify-center text-2xl mx-auto mt-20">
       <div className="flex flex-col">
-       
         <Hero />
-
-        
       </div>
       {/* <div className="flex flex-col w-full">
         <h2 className="text-xl font-semibold mb-2">7-Day Forecast</h2>
@@ -91,6 +88,7 @@ export default function Home() {
           ))}
         </div>
       </div> */}
+      <p>Continu further With next Component</p>
     </div>
   );
 }
