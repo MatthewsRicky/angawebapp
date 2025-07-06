@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <div className="h-screen flex flex-col w-full items-center justify-center text-2xl mx-auto mt-20">
-      <div className="flex flex-col w-[95%] mx-auto">
+      <div className="flex flex-col xl:w-fit w-[95%] mx-auto">
         <Hero />
         <p>Continue further With next Component</p>
       </div>
