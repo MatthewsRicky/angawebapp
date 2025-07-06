@@ -3,11 +3,9 @@ import Searchbar from "./Searchbar";
 import CurrentWeatherCard from "./CurrentWeatherCard";
 import WeeklyWeatherCard from "./WeeklyWeatherCard";
 
-
-
 export default function Hero() {
   return (
-    <div className="flex flex-col lg:flex-row items-center h-screen justify-around mx-auto w-full">
+    <div className="flex flex-col lg:flex-row items-center h-screen justify-around mx-auto w-full xl:w-[80%]">
       <div className="flex flex-col gap-8 w-full">
         <div className="flex flex-col md:flex-row gap-4">
           <CurrentWeatherCard className="h-[100%]" children />
