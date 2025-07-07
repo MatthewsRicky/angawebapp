@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchFullWeather } from "./lib/api";
-import { BsCloudRainHeavy } from "react-icons/bs";
-import { BiSun } from "react-icons/bi";
-import CurrentWeatherCard from "./components/CurrentWeatherCard";
-import WeeklyWeatherCard from "./components/WeeklyWeatherCard";
+import { fetchFullWeather, fetchCoordsByCity } from "./lib/api";
 import Hero from "./components/Hero";
 
 export default function Home() {
   const [weather, setWeather] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false)
+  const [city, setCity] = useState("");
+
+
 
   useEffect(() => {
     // Static fallback location: Diani
