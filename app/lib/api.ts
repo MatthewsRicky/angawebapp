@@ -27,3 +27,23 @@ export async function fetchFullWeather(
   }
   return response.json();
 }
+
+export async function fetchCoordsByCity(city: string): Promise<{
+  lat: number;
+  lon: number;
+}> {
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+    city
+  )}&limit=1`;
+
+  const response = await fetch(url);
+
+  if (!response) {
+    throw new Error("Failed to load data");
+  }
+  const data = await response.json();
+  return {
+    lat: data.results[0].latitude,
+    lon: data.results[0].longitude,
+  };
+}
