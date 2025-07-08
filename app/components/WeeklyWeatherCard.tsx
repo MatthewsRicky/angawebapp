@@ -35,7 +35,7 @@ export default function WeeklyWeatherCard() {
   return (
     <main className="flex flex-col items-center justify-center w-full mx-auto xl:min-w-full min-h-full">
       <div
-        className="flex w-full px-3 mb-2 justify-center rounded-t-md rounded-b-2xl items-center border-1 border-blue-300/40 shadowsm"
+         className="flex w-full px-3 mb-2 justify-center rounded-t-md rounded-b-2xl items-center border-1 border-blue-300/40 shadowsm"
         key={current.time}
       >
         <p className="font-extrabold uppercase text-gray-700/70 text-xs">
