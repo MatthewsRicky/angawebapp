@@ -7,10 +7,8 @@ import Hero from "./components/Hero";
 export default function Home() {
   const [weather, setWeather] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [city, setCity] = useState("");
-
-
 
   useEffect(() => {
     // Static fallback location: Diani
