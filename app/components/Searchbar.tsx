@@ -18,8 +18,8 @@ export default function Searchbar() {
       const coords = await fetchCoordsByCity(city);
       const data = await fetchFullWeather(coords.lat, coords.lon);
       setWeather(data);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (error: any) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -32,7 +32,7 @@ export default function Searchbar() {
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Enter location"
-          className="border-gray-600/40 text-md px-3 py-1 border-2 rounded-lg text-sm text-gray-900 font-regular bg-gray-200"
+          className="border-gray-600/40 text-md px-3 py-1 border-2 rounded-lg text-sm text-gray-900 font-regular active: bg-gray-200"
         />
         <button
           onClick={handleSearch}
