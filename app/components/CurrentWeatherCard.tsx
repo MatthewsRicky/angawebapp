@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { BiSolidRightArrow } from "react-icons/bi";
 import {
-  BsCloudRainHeavy,
   BsFillMoonFill,
   BsFillSunFill,
 } from "react-icons/bs";
