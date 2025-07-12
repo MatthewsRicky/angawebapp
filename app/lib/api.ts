@@ -26,6 +26,7 @@ export async function fetchFullWeather(
     throw new Error("Failed to load data");
   }
   return response.json();
+  console.log(response);
 }
 
 export async function fetchCoordsByCity(city: string): Promise<{
