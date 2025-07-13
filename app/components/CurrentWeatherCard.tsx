@@ -2,53 +2,34 @@
 
 import { useEffect, useState } from "react";
 import { BiSolidRightArrow } from "react-icons/bi";
-import {
-  BsFillMoonFill,
-  BsFillSunFill,
-} from "react-icons/bs";
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { fetchFullWeather } from "../lib/api";
 
-export default function CurrentWeatherCard({ className }: weatherCardProps) {
-  const [weather, setWeather] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
+type Props = {
+  className?: string;
+  weather?: any;
+  error?: string | null;
+};
 
-  useEffect(() => {
-    const loadDefault = async () => {
-      try {
-        const data = await fetchFullWeather(40.7128, -74.006); // NYC
-        setWeather(data);
-      } catch (err: any) {
-        setError("Could not load default weather.");
-      }
-    };
-    loadDefault();
-  }, []);
+export default function CurrentWeatherCard({
+  weather,
+  error,
+  className,
+}: Props) {
+  // const [weather, setWeather] = useState<any>(null);
+  // const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        try {
-          const data = await fetchFullWeather(latitude, longitude);
-          setWeather(data);
-        } catch {
-          setError("Failed to fetch weather data.");
-        }
-      },
-      async () => {
-        // Permission denied fallback to NYC
-        try {
-          const data = await fetchFullWeather(40.7128, -74.006); // NYC
-          setWeather(data);
-
-          setError("Location permission denied. Showing NYC.");
-        } catch {
-          setError("Could not load default weather.");
-        }
-      }
-    );
-  }, []);
+  // useEffect(() => {
+  //   const loadDefault = async () => {
+  //     try {
+  //       const data = await fetchFullWeather(40.7128, -74.006); // NYC
+  //       setWeather(data);
+  //     } catch (err: any) {
+  //       setError("Could not load default weather.");
+  //     }
+  //   };
+  //   loadDefault();
+  // }, []);
 
   if (error) return <p className="text-red-500">{error}</p>;
   if (!weather) return <p>Loading weather...</p>;
