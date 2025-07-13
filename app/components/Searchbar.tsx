@@ -10,16 +10,19 @@ export default function Searchbar() {
   const [city, setCity] = useState("");
 
   const handleSearch = async () => {
-    if (!city.trim()) return;
     setLoading(true);
     setError(null);
 
     try {
-      const coords = await fetchCoordsByCity(city);
-      const data = await fetchFullWeather(coords.lat, coords.lon);
+      // Replace this with your own geocoding API that returns lat/lon for the city name
+      const geoRes = await fetch(`/api/geocode?city=${query}`);
+      const geoData = await geoRes.json();
+      const { lat, lon } = geoData;
+
+      const data = await fetchFullWeather(lat, lon);
       setWeather(data);
-    } catch (error: any) {
-      setError(error.message);
+    } catch (err: any) {
+      setError("Failed to fetch weather.");
     } finally {
       setLoading(false);
     }
