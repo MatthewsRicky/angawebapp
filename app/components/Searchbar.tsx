@@ -1,50 +1,44 @@
 "use client";
 
 import React, { useState } from "react";
-import { fetchCoordsByCity, fetchFullWeather } from "../lib/api";
+import { fetchCoordsByCity } from "../lib/api";
 
-export default function Searchbar() {
-  const [weather, setWeather] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
+type Props = {
+  onSearch: (coords: { lat: number; lon: number }) => void;
+};
+
+export default function Searchbar({ onSearch }: Props) {
   const [loading, setLoading] = useState(false);
   const [city, setCity] = useState("");
 
   const handleSearch = async () => {
-    setLoading(true);
-    setError(null);
-
     try {
-      // Replace this with your own geocoding API that returns lat/lon for the city name
-      const geoRes = await fetch(`/api/geocode?city=${query}`);
-      const geoData = await geoRes.json();
-      const { lat, lon } = geoData;
-
-      const data = await fetchFullWeather(lat, lon);
-      setWeather(data);
+      setLoading(true);
+      const { lat, lon } = await fetchCoordsByCity(city);
+      onSearch({ lat, lon });
     } catch (err: any) {
-      setError("Failed to fetch weather.");
+      alert(err.message || "City not found");
     } finally {
       setLoading(false);
     }
   };
+
   return (
-    <div>
-      <div className="flex flex-row w-10/12">
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder="Enter location"
-          className="border-gray-600/40 text-md px-3 py-1 border-2 rounded-lg text-sm text-gray-900 font-regular active: bg-gray-200"
-        />
-        <button
-          onClick={handleSearch}
-          className="bg-element text-white px-4 py-1 ml-2 rounded-lg text-sm font-semibold hover:bg-gray-600/60 transition-colors duration-300"
-          disabled={loading}
-        >
-          {loading ? "Searching..." : "Search"}
-        </button>
-      </div>
+    <div className="flex flex-row w-10/12">
+      <input
+        type="text"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        placeholder="Search for City"
+        className="border-gray-600/40 text-md px-3 py-1 border-2 rounded-lg text-sm text-gray-900 font-regular active:bg-gray-200"
+      />
+      <button
+        onClick={handleSearch}
+        className="bg-element text-white px-4 py-1 ml-2 rounded-lg text-sm font-semibold hover:bg-gray-600/60 transition-colors duration-300"
+        disabled={loading}
+      >
+        {loading ? "Searching..." : "Search"}
+      </button>
     </div>
   );
 }
