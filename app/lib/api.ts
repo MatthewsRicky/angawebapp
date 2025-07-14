@@ -6,7 +6,7 @@ export type WeatherResponse = {
     time: string;
   };
   daily: {
-    time: string[]; // e.g., ["2024-06-27", ...]
+    time: string[];
     temperature_2m_max: number[];
     temperature_2m_min: number[];
     wind_speed_10m_max: number[];
@@ -22,29 +22,29 @@ export async function fetchFullWeather(
     `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,wind_speed_10m_max,weathercode&timezone=auto&forecast_days=7`
   );
 
-  if (!response) {
-    throw new Error("Failed to load data");
+  if (!response.ok) {
+    throw new Error("Failed to load weather data");
   }
   return response.json();
-  console.log(response);
 }
 
-export async function fetchCoordsByCity(city: string): Promise<{
-  lat: number;
-  lon: number;
-}> {
+export async function fetchCoordsByCity(city: string) {
   const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
     city
   )}&limit=1`;
 
   const response = await fetch(url);
+  if (!response.ok) throw new Error("Failed to fetch coordinates");
 
-  if (!response) {
-    throw new Error("Failed to load data");
-  }
   const data = await response.json();
+
+  if (!data || data.length === 0) {
+    throw new Error("City not found");
+  }
+
+  const { lat, lon } = data[0];
   return {
-    lat: data.results[0].latitude,
-    lon: data.results[0].longitude,
+    lat: parseFloat(lat),
+    lon: parseFloat(lon),
   };
 }
