@@ -1,6 +1,3 @@
-"use client";
-import { useState } from "react";
-
 export default function Header() {
   return (
     <header className="flex items-center justify-between w-full h-20 bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-lg">

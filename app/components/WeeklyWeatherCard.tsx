@@ -26,7 +26,7 @@ export default function WeeklyWeatherCard({
       try {
         const data = await fetchFullWeather(lat, lon);
         setWeather(data);
-      } catch (err: any) {
+      } catch (err: string | any) {
         setError(err.message);
       }
     };
@@ -56,7 +56,7 @@ export default function WeeklyWeatherCard({
       </div>
 
       <div className="grid grid-cols-7 gap-3 pb-2 px-2 w-full rounded-t-md rounded-b-2xl items-center border-2 border-blue-300/40 justify-between shadowxl h-full">
-        {daily.time.map((date: string, i: number) => (
+        {daily.time.map((date: string) => (
           <div
             key={date}
             className="flex flex-col items-center justify-around rounded-md bg-element shadowsm "
@@ -71,45 +71,49 @@ export default function WeeklyWeatherCard({
           </div>
         ))}
 
-        {weatherCardData.map((index: { title: React.Key | null | undefined; }, i: number) => (
-          <section
-            className="flex flex-col items-center justify-around rounded-md bg-element shadowxl h-full"
-            key={index.title}
-          >
-            {/* <div className="flex flex-col items-center justify-between gap-3">
+        {weatherCardData.map(
+          (index: { title: React.Key | null | undefined }, i: number) => (
+            <section
+              className="flex flex-col items-center justify-around rounded-md bg-element shadowxl h-full"
+              key={index.title}
+            >
+              {/* <div className="flex flex-col items-center justify-between gap-3">
               <BiCloudDrizzle className="text-3xl text-center mt-3" />
               <h3 className="text-xs line-clamp-2 text-center">
                 {index.title}
               </h3>
             </div> */}
 
-            <span className="flex flex-col gap-1 items-center justify-center mt-2 text-xs">
-              <BsFillSunFill className="text-yellow-400" />
-              <p>high</p>
-              <h1>
-                {daily.temperature_2m_max[i]}
-                <sup>0</sup>c
-              </h1>
-            </span>
-            <span className="flex flex-col gap-1 items-center justify-center mt-2 text-xs">
-              <BiMoon className="text-yellow-400" />
-              <h1>
-                <p>low</p>
-                {daily.temperature_2m_min[i]}
-                <sup>0</sup>c
-              </h1>
-            </span>
-            <div className="flex flex-col items-center justify-between mb-3">
-              <div className="flex items-center justify-center">
-                💨
-                <MdArrowRightAlt className="text-base" />
-              </div>
-              <span>
-                <h3 className="text-xs">{daily.wind_speed_10m_max[i]} km/h</h3>
+              <span className="flex flex-col gap-1 items-center justify-center mt-2 text-xs">
+                <BsFillSunFill className="text-yellow-400" />
+                <p>high</p>
+                <h1>
+                  {daily.temperature_2m_max[i]}
+                  <sup>0</sup>c
+                </h1>
               </span>
-            </div>
-          </section>
-        ))}
+              <span className="flex flex-col gap-1 items-center justify-center mt-2 text-xs">
+                <BiMoon className="text-yellow-400" />
+                <h1>
+                  <p>low</p>
+                  {daily.temperature_2m_min[i]}
+                  <sup>0</sup>c
+                </h1>
+              </span>
+              <div className="flex flex-col items-center justify-between mb-3">
+                <div className="flex items-center justify-center">
+                  💨
+                  <MdArrowRightAlt className="text-base" />
+                </div>
+                <span>
+                  <h3 className="text-xs">
+                    {daily.wind_speed_10m_max[i]} km/h
+                  </h3>
+                </span>
+              </div>
+            </section>
+          )
+        )}
       </div>
     </main>
   );

@@ -16,7 +16,7 @@ export default function Searchbar({ onSearch }: Props) {
       setLoading(true);
       const { lat, lon } = await fetchCoordsByCity(city);
       onSearch({ lat, lon });
-    } catch (err: any) {
+    } catch (err: string | any) {
       alert(err.message || "City not found");
     } finally {
       setLoading(false);
