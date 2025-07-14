@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { fetchWeatherApi } from "openmeteo";
 
 export async function GET(req: NextRequest) {
   const lat = req.nextUrl.searchParams.get("lat");

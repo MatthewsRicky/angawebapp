@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { BiCloudDrizzle, BiMoon, BiSun } from "react-icons/bi";
-import { MdArrowRight, MdArrowRightAlt } from "react-icons/md";
+import { BiMoon } from "react-icons/bi";
+import { MdArrowRightAlt } from "react-icons/md";
 import { weatherCardData } from "../lib/data";
 import { fetchFullWeather } from "../lib/api";
 import { BsFillSunFill } from "react-icons/bs";
