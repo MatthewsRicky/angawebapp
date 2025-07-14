@@ -5,37 +5,36 @@ import { BiSolidRightArrow } from "react-icons/bi";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { fetchFullWeather } from "../lib/api";
 
-type Props = {
+type WeatherCardProps = {
   className?: string;
-  weather?: any;
-  error?: string | null;
+  lat: number;
+  lon: number;
 };
 
 export default function CurrentWeatherCard({
-  weather,
-  error,
   className,
-}: Props) {
-  // const [weather, setWeather] = useState<any>(null);
-  // const [error, setError] = useState<string | null>(null);
+  lat,
+  lon,
+}: WeatherCardProps) {
+  const [weather, setWeather] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  // useEffect(() => {
-  //   const loadDefault = async () => {
-  //     try {
-  //       const data = await fetchFullWeather(40.7128, -74.006); // NYC
-  //       setWeather(data);
-  //     } catch (err: any) {
-  //       setError("Could not load default weather.");
-  //     }
-  //   };
-  //   loadDefault();
-  // }, []);
+  useEffect(() => {
+    const loadWeather = async () => {
+      try {
+        const data = await fetchFullWeather(lat, lon);
+        setWeather(data);
+      } catch (err) {
+        setError("Failed to fetch weather data.");
+      }
+    };
 
+    if (lat && lon) loadWeather();
+  }, [lat, lon]);
   if (error) return <p className="text-red-500">{error}</p>;
   if (!weather) return <p>Loading weather...</p>;
 
   const current = weather.current;
-  const daily = weather.daily;
 
   return (
     <main
