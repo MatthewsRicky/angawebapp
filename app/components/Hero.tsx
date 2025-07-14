@@ -8,7 +8,7 @@ export default function Hero() {
   const [coords, setCoords] = useState({ lat: -4.322222, lon: 39.575001 }); // Diani default
 
   return (
-    <div className="flex flex-col lg:flex-row items-center h-screen justify-around mx-auto mb-10 w-full xl:w-[80%]">
+    <div className="flex flex-col lg:flex-row items-center h-screen justify-around mx-auto mb-10 w-fit xl:w-[80%]">
       <div className="flex flex-col gap-8 w-full">
         <Searchbar onSearch={setCoords} />
 
