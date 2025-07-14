@@ -5,26 +5,34 @@ import { weatherCardData } from "../lib/data";
 import { fetchFullWeather } from "../lib/api";
 import { BsFillSunFill } from "react-icons/bs";
 
-export default function WeeklyWeatherCard() {
+type WeatherCardProps = {
+  className?: string;
+  lat: number;
+  lon: number;
+};
+
+export default function WeeklyWeatherCard({
+  className,
+  lat,
+  lon,
+}: WeatherCardProps) {
   const [weather, setWeather] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Static fallback location: Diani
-    const latitude = -4.322222;
-    const longitude = 39.575001;
 
     const loadWeather = async () => {
       try {
-        const data = await fetchFullWeather(latitude, longitude);
+        const data = await fetchFullWeather(lat, lon);
         setWeather(data);
       } catch (err: any) {
         setError(err.message);
       }
     };
 
-    loadWeather();
-  }, []);
+    if (lat && lon) loadWeather();
+  }, [lat, lon]);
 
   if (error) return <p className="text-red-500">{error}</p>;
   if (!weather) return <p>Loading weather...</p>;
@@ -33,9 +41,11 @@ export default function WeeklyWeatherCard() {
   const daily = weather.daily;
 
   return (
-    <main className="flex flex-col items-center justify-center w-full mx-auto xl:min-w-full min-h-full">
+    <main
+      className={`flex flex-col items-center justify-center w-full mx-auto xl:min-w-full min-h-full ${className}`}
+    >
       <div
-         className="flex w-full px-3 mb-2 justify-center rounded-t-md rounded-b-2xl items-center border-1 border-blue-300/40 shadowsm"
+        className="flex w-full px-3 mb-2 justify-center rounded-t-md rounded-b-2xl items-center border-1 border-blue-300/40 shadowsm"
         key={current.time}
       >
         <p className="font-extrabold uppercase text-gray-700/70 text-xs">
