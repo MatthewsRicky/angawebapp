@@ -12,7 +12,7 @@ export default function Hero() {
       <div className="flex flex-col gap-8 w-full">
         <Searchbar onSearch={setCoords} />
 
-        <div className="flex flex-col my-4 md:flex-row gap-2 xl:gap-12">
+        <div className="flex flex-col items-center justify-between my-4 md:flex-row gap-6 xl:gap-12">
           <CurrentWeatherCard
             className="h-[100%]"
             lat={coords.lat}
