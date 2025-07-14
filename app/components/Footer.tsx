@@ -6,7 +6,7 @@ export default function Footer() {
       <footer className="text-center text-gray-500 mt-8">
         © {new Date().getFullYear()} Weather App
       </footer>
-      <p className="text-center text-gray-500 mt-2">
+      <p className="text-center text-gray-500 my-2">
         {" "}
         Built with Next.js and Open-Meteo API
       </p>
