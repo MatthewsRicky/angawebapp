@@ -1,3 +1,5 @@
+
+
 export const weatherCardData = [
   {
     day: "Sun",
@@ -63,3 +65,4 @@ export const weatherCardData = [
     windspeed: '23',
   },
 ] as const;
+
