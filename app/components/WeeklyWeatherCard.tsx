@@ -71,7 +71,7 @@ export default function WeeklyWeatherCard({
           </div>
         ))}
 
-        {weatherCardData.map((index, i: number) => (
+        {weatherCardData.map((index: { title: React.Key | null | undefined; }, i: number) => (
           <section
             className="flex flex-col items-center justify-around rounded-md bg-element shadowxl h-full"
             key={index.title}
