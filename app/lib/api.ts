@@ -12,6 +12,9 @@ export type WeatherResponse = {
     wind_speed_10m_max: number[];
     weathercode: number[];
   };
+  aqi?: {
+    european_aqi: number;
+  };
 };
 
 export async function fetchFullWeather(
