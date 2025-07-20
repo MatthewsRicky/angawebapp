@@ -24,9 +24,12 @@ export async function fetchFullWeather(
   const response = await fetch(
     `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,wind_speed_10m_max,weathercode&timezone=auto&forecast_days=7`
   );
+  const aqiRes = await fetch(
+    `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=european_aqi`
+  );
 
-  if (!response.ok) {
-    throw new Error("Failed to load weather data");
+  if (!response.ok || !aqiRes.ok) {
+    throw new Error("Failed to load weather or AQI data");
   }
   return response.json();
 }
