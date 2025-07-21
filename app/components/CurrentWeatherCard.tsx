@@ -70,6 +70,7 @@ export default function CurrentWeatherCard({
             <p className="text-lg">💨 Wind: {current.wind_speed_10m} km/h</p>
             <div className="flex items-center justify-around w-full">
               <h3>More details</h3>
+              <h1>AQI</h1>
               <BiSolidRightArrow />
             </div>
           </div>
